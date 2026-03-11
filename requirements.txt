@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+datasets
+pyyaml
+dvc
+#mlflow
+#transformers
+#tourch
