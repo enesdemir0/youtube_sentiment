@@ -3,6 +3,7 @@ scikit-learn
 datasets
 pyyaml
 dvc
+nltk
 #mlflow
 #transformers
 #tourch
