@@ -34,3 +34,50 @@ stages:
       md5: 3133714c3b0e9e89274303fd2d581065.dir
       size: 3689943
       nfiles: 2
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+    - path: data/interim/train_processed.csv
+      hash: md5
+      md5: 9ac9281e9a03bebb95b3786bb28c44d5
+      size: 2952990
+    - path: src/model/model_building.py
+      hash: md5
+      md5: b49e27d6bd0f5a214192f035df430229
+      size: 3645
+    params:
+      params.yaml:
+        model_building.batch_size: 16
+        model_building.epochs: 1
+        model_building.model_name: distilbert-base-uncased
+    outs:
+    - path: models/sentiment_model
+      hash: md5
+      md5: 20659f17f78eafa06b06bc65812d4ced.dir
+      size: 268548496
+      nfiles: 4
+  model_evaluation:
+    cmd: python src/model/model_evaluation.py
+    deps:
+    - path: data/interim/test_processed.csv
+      hash: md5
+      md5: 69a19274dfef6b6c0f4b6e17706e2940
+      size: 736953
+    - path: models/sentiment_model
+      hash: md5
+      md5: 20659f17f78eafa06b06bc65812d4ced.dir
+      size: 268548496
+      nfiles: 4
+    - path: src/model/model_evaluation.py
+      hash: md5
+      md5: ac57e64921441f9e7afe461fff211631
+      size: 3524
+    outs:
+    - path: confusion_matrix.png
+      hash: md5
+      md5: f77b12e526799977a47b8b6ec9dd1f7e
+      size: 20699
+    - path: metrics.json
+      hash: md5
+      md5: 8811826be79c41b151b5f056ee6f1f33
+      size: 72

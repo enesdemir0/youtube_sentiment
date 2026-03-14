@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+/models/sentiment_model
+/models/results
+models/
 # C extensions
 *.so
 

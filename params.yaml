@@ -1,3 +1,11 @@
 data_ingestion:
   test_size: 0.2
-  
+
+
+model_building:
+  model_name: "distilbert-base-uncased"
+  batch_size: 16
+  epochs: 1
+  learning_rate: 0.00002
+
+

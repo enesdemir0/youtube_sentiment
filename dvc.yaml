@@ -11,7 +11,34 @@ stages:
   data_preprocessing:
     cmd: python src/data/data_preprocessing.py
     deps:
-      - data/raw                  
+      - data/raw
       - src/data/data_preprocessing.py
     outs:
-      - data/interim              
+      - data/interim
+
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+      - data/interim/train_processed.csv
+      - src/model/model_building.py
+    params:
+      - model_building.model_name
+      - model_building.epochs
+      - model_building.batch_size
+    outs:
+      - models/sentiment_model   
+    
+  model_evaluation:
+      cmd: python src/model/model_evaluation.py
+      deps:
+        - data/interim/test_processed.csv
+        - models/sentiment_model
+        - src/model/model_evaluation.py
+      # DVC will track this file as a metric
+      metrics:
+        - metrics.json:
+            cache: false
+      # DVC will track this as a plot/image
+      plots:
+        - confusion_matrix.png:
+            cache: false

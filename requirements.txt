@@ -5,5 +5,7 @@ pyyaml
 dvc
 nltk
 #mlflow
-#transformers
+transformers
 #tourch
+accelerate>=1.1.0
+seaborn
